@@ -23,6 +23,7 @@
 
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) NSURL *photoURL;
+@property (nonatomic, strong) NSURL *highResURL;
 @property (nonatomic, strong) PHAsset *asset;
 @property (nonatomic) CGSize assetTargetSize;
 
@@ -42,6 +43,12 @@
 
 + (MWPhoto *)photoWithURL:(NSURL *)url {
     return [[MWPhoto alloc] initWithURL:url];
+}
+
++ (MWPhoto *)photoWithLowResURL:(NSURL *)lowResURL highResURL:(NSURL *)highResURL {
+    MWPhoto *p = [[MWPhoto alloc] initWithURL:lowResURL];
+    p.highResURL = highResURL;
+    return p;
 }
 
 + (MWPhoto *)photoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize {

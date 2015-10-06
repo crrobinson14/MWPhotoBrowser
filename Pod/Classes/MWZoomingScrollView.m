@@ -305,7 +305,7 @@
 #pragma mark - Layout
 
 - (void)layoutSubviews {
-	
+    NSLog(@"Current zoom %f", self.zoomScale);
 	// Update tap view frame
 	_tapView.frame = self.bounds;
 	
