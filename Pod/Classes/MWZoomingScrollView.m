@@ -176,7 +176,12 @@
             self.contentSize = photoImageViewFrame.size;
             
             // Set zoom to minimum zoom
+//            CGFloat zoomPercentage = (self.zoomScale - self.minimumZoomScale) / (self.maximumZoomScale - self.minimumZoomScale);
+//            NSLog(@"Prior zoom scales %f%% %f %f", zoomPercentage, self.maximumZoomScale, self.minimumZoomScale);
             [self setMaxMinZoomScalesForCurrentBounds];
+            self.zoomScale = 0.6;
+//            self.zoomScale = zoomPercentage * (self.maximumZoomScale - self.minimumZoomScale);
+//            NSLog(@"Calculate zoom scales %f %f %f", self.zoomScale, self.maximumZoomScale, self.minimumZoomScale);
             
         } else  {
             
@@ -333,11 +338,12 @@
 #pragma mark - Layout
 
 - (void)layoutSubviews {
+    NSLog(@"Zooming at zoom scale %f", self.zoomScale);
     if (self.zoomScale >= 2.5) {
         [self.photo loadHighRes];
     }
-    NSLog(@"Current zoom %f", self.zoomScale);
-	// Update tap view frame
+
+    // Update tap view frame
 	_tapView.frame = self.bounds;
 	
 	// Position indicators (centre does not seem to work!)
