@@ -196,6 +196,7 @@
 // Load from local file
 - (void)_performLoadUnderlyingImageAndNotifyWithWebURL:(NSURL *)url {
     @try {
+        NSLog(@"Loading %@", url);
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
         _webImageOperation = [manager downloadImageWithURL:url
                                                    options:0
@@ -321,6 +322,17 @@
     } else if (_assetRequestID != PHInvalidImageRequestID) {
         [[PHImageManager defaultManager] cancelImageRequest:_assetRequestID];
         _assetRequestID = PHInvalidImageRequestID;
+    }
+}
+
+- (void)loadHighRes {
+    if (!_loadedHighRes) {
+        NSLog(@"Loading high-res version of photo");
+        _loadedHighRes = YES;
+        
+        if (_highResURL != nil) {
+            [self _performLoadUnderlyingImageAndNotifyWithWebURL: _highResURL];
+        }
     }
 }
 

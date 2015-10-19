@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSURL *videoURL;
 @property (nonatomic) BOOL emptyImage;
 @property (nonatomic) BOOL isVideo;
+@property (nonatomic) BOOL loadedHighRes;
 
 + (MWPhoto *)photoWithImage:(UIImage *)image;
 + (MWPhoto *)photoWithURL:(NSURL *)url;
@@ -32,6 +33,8 @@
 - (id)initWithURL:(NSURL *)url;
 - (id)initWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize;
 - (id)initWithVideoURL:(NSURL *)url;
+
+- (void)loadHighRes;
 
 @end
 
